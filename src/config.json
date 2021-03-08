@@ -1,0 +1,6 @@
+{
+  "loginURL": "http://172.25.33.141:3900/login",
+  "allSitesURL": "http://172.25.33.141:3900/sites",
+  "allSiteURL": "http://172.25.33.141:3900/sites",
+  "editSiteURl": "http://172.25.33.141:3900/sites"
+}
