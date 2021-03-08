@@ -52,7 +52,7 @@ class ViewSites extends Component {
         const {data, showProgress} = this.props;
         return (
             <div >
-                { showProgress && <div className="progress-bar" ><img src="images/ajax-loader.gif" alt="Processing"/></div>}
+                { showProgress && <div className="progress-bar" ><img src="/images/ajax-loader.gif" alt="Processing"/></div>}
                 {data.length >0 &&   <div className="vertical-container"><table>
                     <thead>
                     <tr>

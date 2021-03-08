@@ -137,7 +137,7 @@ class EditSiteForm extends Component {
                         </select>
                     </div>
                     {this.state.showProgress && <div  className="progressIndicator">
-                        <img src="images/ajax-loader.gif" alt="Processing"/>
+                        <img src="/images/ajax-loader.gif" alt="Processing"/>
                     </div>}
                     <div className="form-group-btn">
                         <button className="btn-submit">Save</button>

@@ -135,7 +135,7 @@ class App extends Component {
                                 Are you sure you want to delete <span className="message-box-siteId">{`"${siteToDelete}"`}</span>
                             </div>
                             {showDialogProgress &&  <div  className="progressIndicator">
-                                <img src="images/ajax-loader.gif" alt="Processing"/>
+                                <img src="/images/ajax-loader.gif" alt="Processing"/>
                             </div>}
 
                             <div className="button-group">
