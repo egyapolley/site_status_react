@@ -269,6 +269,10 @@ th {
     color: #00BCD4;
 }
 
+.th_real {
+    cursor: pointer;
+}
+
 tr:hover {
     background: #424242;
 }
@@ -408,6 +412,9 @@ i.edit:hover, i.delete:hover {
     background: white;
     color: #222020;
     box-shadow: 0 0 10px #ccc;
+}
+i.sort {
+    margin-left: 5px;
 }
 
 

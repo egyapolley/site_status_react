@@ -14,6 +14,8 @@ import {toast, ToastContainer, Slide} from "react-toastify";
 import '@fortawesome/fontawesome-free/css/all.css'
 import httpService from "./services/httpService";
 
+import _ from 'lodash'
+
 ReactModal.setAppElement(document.getElementById("root"))
 
 
@@ -26,6 +28,10 @@ class App extends Component {
         showDialog: false,
         siteToDelete:"",
         showDialogProgress:false,
+        sortColumn: {
+            path: "site_id",
+            orderBy:"asc"
+        }
 
     }
     customStyles = {
@@ -44,6 +50,19 @@ class App extends Component {
     handleDelete = (site) => {
         this.setState({showDialog: true, siteToDelete:site.site_id})
 
+    }
+
+    handleSortEvent = (column) =>{
+        const sortColumn = {...this.state.sortColumn}
+        if (column.path){
+            if (column.path ===sortColumn.path ){
+                sortColumn.orderBy = sortColumn.orderBy ==='asc'?"desc":"asc"
+            }else {
+                sortColumn.path = column.path
+                sortColumn.orderBy="asc"
+            }
+            this.setState({sortColumn})
+        }
     }
 
     handleUpdateData = async () => {
@@ -112,7 +131,9 @@ class App extends Component {
 
 
     render() {
-        const {data, isLogin, showProgress, showDialog,siteToDelete,showDialogProgress} = this.state;
+        const {isLogin, showProgress, showDialog,siteToDelete,showDialogProgress, sortColumn} = this.state;
+        let {data} = this.state;
+        data = _.orderBy(data,[sortColumn.path],sortColumn.orderBy)
         if (!isLogin) return <Login/>
         return (
             <div>
@@ -148,7 +169,7 @@ class App extends Component {
                     <Switch>
                         <Route
                             path="/view-sites"
-                            render={(props) => <ViewSites data={data} showProgress={showProgress}{...props}
+                            render={(props) => <ViewSites data={data} sortColumn={sortColumn} onSort={this.handleSortEvent} showProgress={showProgress}{...props}
                                                           onDelete={this.handleDelete}/>}/>
 
                         <Route path="/edit-site/:site_id?"

@@ -46,17 +46,31 @@ class ViewSites extends Component {
     }
 
 
+    displaySortImage =(column) =>{
+        const {path, orderBy} = this.props.sortColumn
+        if (column.path && column.path ===path){
+            if (orderBy === 'asc'){
+                return <i class="fas fa-sort-up sort"/>
+            }else {
+                return <i className="fas fa-sort-down sort"/>
+            }
+        }
+
+    }
+
+
+
 
 
     render() {
-        const {data, showProgress} = this.props;
+        const {data, showProgress, onSort} = this.props;
         return (
             <div >
                 { showProgress && <div className="progress-bar" ><img src="/images/ajax-loader.gif" alt="Processing"/></div>}
                 {data.length >0 &&   <div className="vertical-container"><table>
                     <thead>
                     <tr>
-                        {this.columnHeading.map(columnHeading =><th key={columnHeading.path||columnHeading.key}>{columnHeading.title}</th>)}
+                        {this.columnHeading.map(columnHeading =><th key={columnHeading.path||columnHeading.key} onClick={() =>onSort(columnHeading)} className={columnHeading.path?"th_real":""} >{columnHeading.title}{this.displaySortImage(columnHeading)}</th>)}
                     </tr>
 
                     </thead>
